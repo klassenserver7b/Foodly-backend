@@ -1,0 +1,38 @@
+# Foodly Backend
+
+This is the backend server for **Foodly**, a collaborative recipe management application. 
+The backend handles real-time live editing, offline synchronization, and shared recipes using WebSockets and a custom change backlog strategy.
+
+> **Frontend**: The companion mobile and web frontend for Foodly can be found here: [Foodly-FE](https://github.com/P1umPudding/Foodly-FE)
+
+## Features
+
+- **Real-Time Live Editing**: Edit recipes collaboratively with other users in real-time via WebSockets.
+- **Offline Sync**: Client changes are cached offline as a change backlog and synchronized when the connection is restored, automatically resolving conflicts.
+- **Shared Recipes**: Full support for sharing recipes with specific permissions (owners, editors, and viewers).
+- **Structured Data**: Supports complex recipe elements including sections, ingredients, tags, images, and user ratings.
+
+## Tech Stack
+
+The backend is built in Rust to ensure high performance, memory safety, and robust concurrency handling.
+
+- **Language**: Rust
+- **Web Framework**: [Axum](https://github.com/tokio-rs/axum) (HTTP & WebSockets)
+- **Database**: PostgreSQL
+- **Database Driver**: [SQLx](https://github.com/launchbadge/sqlx) (Async, compile-time checked SQL)
+- **Authentication**: JWT via REST endpoint
+- **Async Runtime**: Tokio
+
+## Architecture
+
+- **WebSocket API**: Primary communication layer for syncing recipe changes and broadcasting updates to subscribed clients.
+- **REST API**: Handles initial connection bootstrapping, such as authentication (`/login`).
+- **Sync Strategy**: Custom backlog processing. The server applies offline changes sequentially and drops incoming conflicting changes to maintain a consistent state.
+
+## Installation & Setup
+
+*(Installation instructions to be provided later — will utilize Docker for easy self-hosting.)*
+
+## License
+
+See the [LICENSE](LICENSE) file for more information.
